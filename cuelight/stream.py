@@ -124,7 +124,7 @@ class Endpointer:
     @classmethod
     def from_pretrained(cls, name_or_path: str, preset: str = "snappy", **kw) -> "Endpointer":
         det = TurnDetector.from_pretrained(name_or_path, **kw)
-        presets = getattr(det.m, "cuelight_config", {}).get("policies", {})
+        presets = getattr(det.m, "cuelight_config", {}).get("presets", {})
         return cls(det, EndpointPolicy(**presets[preset]) if preset in presets else EndpointPolicy())
 
     def push(self, chunk) -> bool:
